@@ -33,6 +33,10 @@ def root_interface():
     </html>
     """
 
+@app.get("/health", tags=["System"], summary="System health check endpoint")
+def health_check():
+    return {"status": "ok", "service": "rubblepass-public-demo", "version": "1.0.0-demo"}
+
 @app.get("/api/v1/materials", summary="List synthetic demonstration building materials")
 def list_materials():
     data = load_json_data("synthetic_materials.json")

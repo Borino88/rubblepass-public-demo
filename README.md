@@ -1,6 +1,7 @@
 # RubblePass AI — Cleantech Circular Recovery & Material Assessment Demonstration
 
-[![CI Pipeline](https://github.com/Borino88/rubblepass-ai-demo/actions/workflows/ci.yml/badge.svg)](https://github.com/Borino88/rubblepass-ai-demo/actions/workflows/ci.yml)
+[![CI Pipeline](https://github.com/Borino88/rubblepass-public-demo/actions/workflows/docker-publish.yml/badge.svg)](https://github.com/Borino88/rubblepass-public-demo/actions/workflows/docker-publish.yml)
+[![Docker Hub](https://img.shields.io/docker/v/borino88/rubblepass-public-demo?label=docker&logo=docker)](https://hub.docker.com/r/borino88/rubblepass-public-demo)
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.110+-009688?style=for-the-badge&logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com)
 [![Docker](https://img.shields.io/badge/Docker_Compose-Ready-2496ED?style=for-the-badge&logo=docker&logoColor=white)](https://www.docker.com)
 [![Python](https://img.shields.io/badge/Python-3.11+-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org)
@@ -53,13 +54,22 @@ The demolition and construction sector is responsible for over 30% of global lan
 
 ---
 
-## ⚡ Quick Start (Local Startup)
+## ⚡ Quick Start (Container & Local)
 
-### 1. Run with Docker Compose (Recommended)
+### 1. Run with Docker Quick-Start (Recommended)
+Run the prebuilt, hardened multi-stage container instantly:
+```bash
+docker run -d --name rubblepass-demo -p 8000:8000 borino88/rubblepass-public-demo:latest
+```
+* **Interactive Field Portal:** Navigate to `http://localhost:8000`
+* **OpenAPI Documentation (Swagger UI):** Navigate to `http://localhost:8000/docs`
+* **Health Check Endpoint:** Navigate to `http://localhost:8000/health`
+
+### 2. Run with Docker Compose
 You can launch the entire demonstration service with a single command:
 ```bash
-git clone https://github.com/Borino88/rubblepass-ai-demo.git
-cd rubblepass-ai-demo
+git clone https://github.com/Borino88/rubblepass-public-demo.git
+cd rubblepass-public-demo
 
 docker-compose up --build
 ```
