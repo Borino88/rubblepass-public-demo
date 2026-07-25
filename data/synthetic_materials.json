@@ -1,0 +1,50 @@
+[
+  {
+    "material_id": "MAT-2026-001",
+    "name": "Reinforced Structural Steel Beams (I-Beam W12x50)",
+    "category": "Metals",
+    "estimated_weight_kg": 14500.0,
+    "condition_score": 0.88,
+    "purity_percentage": 98.5,
+    "contaminant_risk": "Low",
+    "origin_facility": "Site A - Industrial Warehouse Demolition, Sector 4",
+    "recommended_recovery_route": "Direct structural salvage & repurposing",
+    "estimated_co2_savings_kg": 26100.0
+  },
+  {
+    "material_id": "MAT-2026-002",
+    "name": "Crushed Concrete Aggregate (Class II Base)",
+    "category": "Masonry & Concrete",
+    "estimated_weight_kg": 85000.0,
+    "condition_score": 0.75,
+    "purity_percentage": 92.0,
+    "contaminant_risk": "Medium (Minor rebar mesh inclusion)",
+    "origin_facility": "Site B - Commercial Plaza Foundations",
+    "recommended_recovery_route": "Mobile crushing for road base aggregate",
+    "estimated_co2_savings_kg": 15300.0
+  },
+  {
+    "material_id": "MAT-2026-003",
+    "name": "Architectural Timber Joists (Douglas Fir, Vintage)",
+    "category": "Timber",
+    "estimated_weight_kg": 3200.0,
+    "condition_score": 0.92,
+    "purity_percentage": 99.0,
+    "contaminant_risk": "Low",
+    "origin_facility": "Site C - Historic Textile Mill Renovation",
+    "recommended_recovery_route": "High-value architectural millwork salvage",
+    "estimated_co2_savings_kg": 7680.0
+  },
+  {
+    "material_id": "MAT-2026-004",
+    "name": "Tempered Glass Curtain Wall Panels",
+    "category": "Glass",
+    "estimated_weight_kg": 6400.0,
+    "condition_score": 0.65,
+    "purity_percentage": 88.0,
+    "contaminant_risk": "Medium (Sealant and PVB interlayer residue)",
+    "origin_facility": "Site D - Midtown Office Tower Facade Retrofit",
+    "recommended_recovery_route": "Cullet recycling for fiberglass insulation manufacturing",
+    "estimated_co2_savings_kg": 5120.0
+  }
+]

@@ -1,0 +1,38 @@
+[
+  {
+    "facility_id": "FAC-01",
+    "name": "Metro Metals & Structural Salvage Hub",
+    "accepted_categories": ["Metals", "Timber"],
+    "max_daily_capacity_kg": 50000.0,
+    "distance_km": 12.4,
+    "base_matching_score": 0.95,
+    "certified_circular": true
+  },
+  {
+    "facility_id": "FAC-02",
+    "name": "EcoCrush Aggregate & Road Base Works",
+    "accepted_categories": ["Masonry & Concrete"],
+    "max_daily_capacity_kg": 200000.0,
+    "distance_km": 8.1,
+    "base_matching_score": 0.91,
+    "certified_circular": true
+  },
+  {
+    "facility_id": "FAC-03",
+    "name": "GreenGlass Cullet Processing Plant",
+    "accepted_categories": ["Glass"],
+    "max_daily_capacity_kg": 25000.0,
+    "distance_km": 34.0,
+    "base_matching_score": 0.84,
+    "certified_circular": true
+  },
+  {
+    "facility_id": "FAC-04",
+    "name": "Urban Wood Reclaimers & Millwork",
+    "accepted_categories": ["Timber"],
+    "max_daily_capacity_kg": 10000.0,
+    "distance_km": 18.5,
+    "base_matching_score": 0.98,
+    "certified_circular": true
+  }
+]

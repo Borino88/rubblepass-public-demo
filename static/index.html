@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RubblePass AI — Field Assessment Portal</title>
+    <style>
+        :root {
+            --bg: #090d16;
+            --card: #111827;
+            --accent: #10b981;
+            --accent-glow: #059669;
+            --text: #f8fafc;
+            --muted: #94a3b8;
+            --border: #1e293b;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            margin: 0;
+            padding: 1rem;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            width: 100%;
+            max-width: 480px;
+        }
+        header {
+            text-align: center;
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 1rem;
+        }
+        h1 {
+            font-size: 1.5rem;
+            margin: 0;
+            color: #fff;
+            letter-spacing: -0.5px;
+        }
+        .badge {
+            display: inline-block;
+            background: rgba(16, 185, 129, 0.15);
+            color: var(--accent);
+            padding: 0.25rem 0.5rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-top: 0.5rem;
+            border: 1px solid var(--accent);
+        }
+        .card {
+            background-color: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.25rem;
+            margin-bottom: 1rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+        }
+        label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--muted);
+            margin-bottom: 0.4rem;
+        }
+        input, select {
+            width: 100%;
+            padding: 0.65rem;
+            background: #0b0f19;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: #fff;
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+            box-sizing: border-box;
+        }
+        button {
+            width: 100%;
+            padding: 0.85rem;
+            background: linear-gradient(135deg, var(--accent), var(--accent-glow));
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: transform 0.1s, opacity 0.2s;
+        }
+        button:hover {
+            opacity: 0.95;
+        }
+        button:active {
+            transform: scale(0.98);
+        }
+        #result-box {
+            display: none;
+            margin-top: 1rem;
+            border-color: var(--accent);
+        }
+        .metric-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.4rem 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            font-size: 0.9rem;
+        }
+        .metric-value {
+            font-weight: 700;
+            color: #38bdf8;
+        }
+        .qr-placeholder {
+            text-align: center;
+            margin-top: 1rem;
+            padding: 1rem;
+            background: #000;
+            border: 1px dashed var(--accent);
+            border-radius: 8px;
+            font-family: monospace;
+            font-size: 0.85rem;
+            color: var(--accent);
+        }
+        footer {
+            text-align: center;
+            font-size: 0.75rem;
+            color: var(--muted);
+            margin-top: 2rem;
+        }
+        a { color: var(--accent); text-decoration: none; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>⚡ RubblePass AI</h1>
+            <div class="badge">FIELD ASSESSMENT PROTOCOL v1.0</div>
+        </header>
+
+        <div class="card">
+            <label for="name">Material Identification</label>
+            <input type="text" id="name" value="Reinforced Structural Timber Beams" />
+
+            <label for="category">Material Category</label>
+            <select id="category">
+                <option value="Timber">Timber</option>
+                <option value="Metals">Metals</option>
+                <option value="Masonry & Concrete">Masonry & Concrete</option>
+                <option value="Glass">Glass</option>
+            </select>
+
+            <label for="volume">Estimated Volume (m³)</label>
+            <input type="number" id="volume" value="15.5" step="0.5" />
+
+            <label for="condition">Visual Condition Score (0.00 to 1.00)</label>
+            <input type="number" id="condition" value="0.88" step="0.05" max="1" min="0" />
+
+            <label for="site">Origin Site Identifier</label>
+            <input type="text" id="site" value="Sector 4 - Warehouse Demolition Project" />
+
+            <button onclick="runAssessment()">Run AI Recovery Estimation</button>
+        </div>
+
+        <div id="result-box" class="card">
+            <h3 style="margin-top: 0; color: var(--accent);">✅ Assessment Complete</h3>
+            <div class="metric-row">
+                <span>Estimated Weight:</span>
+                <span id="res-weight" class="metric-value">--</span>
+            </div>
+            <div class="metric-row">
+                <span>CO₂ Emissions Saved:</span>
+                <span id="res-co2" class="metric-value" style="color: var(--accent);">--</span>
+            </div>
+            <div class="metric-row">
+                <span>Matched Facility:</span>
+                <span id="res-fac" class="metric-value">--</span>
+            </div>
+            <div class="metric-row">
+                <span>Confidence Level:</span>
+                <span id="res-conf" class="metric-value">--</span>
+            </div>
+
+            <div class="qr-placeholder">
+                [ QR DIGITAL PASSPORT GENERATED ]<br />
+                <span id="res-psp" style="color: #fff; font-size: 0.75rem;">--</span>
+            </div>
+        </div>
+
+        <footer>
+            Architectural Demonstration by <a href="https://fattahi.xyz">Mahdi Fattahi</a>.<br />
+            API Documentation available at <a href="/docs">/docs</a>.
+        </footer>
+    </div>
+
+    <script>
+        async function runAssessment() {
+            const payload = {
+                name: document.getElementById('name').value,
+                category: document.getElementById('category').value,
+                estimated_volume_m3: parseFloat(document.getElementById('volume').value),
+                density_factor_kg_m3: 650.0,
+                visual_condition_score: parseFloat(document.getElementById('condition').value),
+                origin_site: document.getElementById('site').value
+            };
+
+            const btn = document.querySelector('button');
+            btn.innerText = "Simulating Routing...";
+            btn.disabled = true;
+
+            try {
+                const res = await fetch('/api/v1/assess', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                const data = await res.json();
+
+                document.getElementById('res-weight').innerText = `${data.estimated_weight_kg.toLocaleString()} kg`;
+                document.getElementById('res-co2').innerText = `${data.estimated_co2_savings_kg.toLocaleString()} kg CO₂`;
+                document.getElementById('res-fac').innerText = `${data.matched_facility.name} (${data.matched_facility.distance_km} km)`;
+                document.getElementById('res-conf').innerText = `${data.confidence_interval_percentage}%`;
+                document.getElementById('res-psp').innerText = `ID: ${data.passport_preview.passport_id}`;
+
+                document.getElementById('result-box').style.display = 'block';
+            } catch (err) {
+                alert("Simulation error: " + err.message);
+            } finally {
+                btn.innerText = "Run AI Recovery Estimation";
+                btn.disabled = false;
+            }
+        }
+    </script>
+</body>
+</html>
